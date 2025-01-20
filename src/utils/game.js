@@ -38,38 +38,6 @@ const setGameStatus = ({ event, playerId, answer, room }) => {
     return game.status;
 };
 
-/*
-const setGame = (callback) => {
-    const url = "https://opentdb.com/api.php?amount=1&category=18";
-    let data = "";
-
-    const request = https.request(url, (response) => {
-        response.on("data", (chunk) => {
-            data = data + chunk.toString();
-        });
-
-        response.on("end", () => {
-            const { correct_answer, createdAt, incorrect_answers, question } = JSON.parse(data).results[0];
-
-            game.status.submissions = {};
-            game.status.correctAnswer = correct_answer;
-            game.prompt = {
-                answers: shuffle([correct_answer, ...incorrect_answers]),
-                question,
-            }
-
-            callback(game);
-        });
-    });
-
-    request.on("error", (error) => {
-        console.error("An error", error);
-    });
-
-    request.end();
-};
-*/
-
 const setGame = async callback => {
     try{
         const response = await fetch("https://opentdb.com/api.php?amount=1&category=18");
